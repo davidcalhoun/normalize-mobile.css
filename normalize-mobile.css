@@ -1,4 +1,4 @@
-/*! normalize-mobile.css https://github.com/davidcalhoun/normalize-mobile.css */
+/*! Mobile subset of normalize.css 2012-02-07T12:37 UTC - http://github.com/necolas/normalize.css */
 
 /* =============================================================================
    HTML5 display definitions
@@ -6,7 +6,7 @@
 
 /*
  * Corrects block display not defined in IE6/7/8/9 & FF3
- * TODO: is this still needed for mobile browsers?
+ * TODO: needed for mobile?
  */
 
 article,
@@ -18,9 +18,11 @@ footer,
 header,
 hgroup,
 nav,
-section {
+section,
+summary {
     display: block;
 }
+
 
 /*
  * Prevents modern browsers from displaying 'audio' without controls
@@ -45,26 +47,20 @@ audio:not([controls]) {
    ========================================================================== */
 
 /*
- * 1. Corrects text resizing oddly in IE6/7 when body font-size is set using em units
- *    http://clagnut.com/blog/348/#c790
- * 2. Keeps page centred in all browsers regardless of content height
- * 3. Prevents iOS text size adjust after orientation change, without disabling user zoom
+ * 2. Prevents iOS text size adjust after orientation change, without disabling user zoom
  *    www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
  */
 
 html {
-    font-size: 100%; /* 1 */
-    overflow-y: scroll; /* 2 */
-    -webkit-text-size-adjust: 100%; /* 3 */
-    -ms-text-size-adjust: 100%; /* 3 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+    -ms-text-size-adjust: 100%; /* 2 */
 }
 
-
-/* 
+/*
  * Addresses font-family inconsistency between 'textarea' and other form elements.
  */
 
-body,
+html,
 button,
 input,
 select,
@@ -74,24 +70,45 @@ textarea {
 
 
 /* =============================================================================
-   Links
-   ========================================================================== */
-
-a {
-    color: #00e;
-}
-
-a:visited {
-    color: #551a8b;
-}
-
-
-/* =============================================================================
    Typography
    ========================================================================== */
 
 /*
- * Addresses styling not present in S5, Chrome
+ * Addresses font sizes within 'section' and 'article' in FF4+, Chrome, S5
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: 0.75em;
+    margin: 2.33em 0;
+}
+
+/*
+ * Addresses styling not present in IE7/8/9, S5, Chrome
  */
 
 abbr[title] {
@@ -99,12 +116,12 @@ abbr[title] {
 }
 
 /*
- * Addresses style set to 'bolder' in FF3/4, S4/5, Chrome
+ * Addresses style set to 'bolder' in FF3+, S4/5, Chrome
 */
 
-b, 
-strong { 
-    font-weight: bold; 
+b,
+strong {
+    font-weight: bold;
 }
 
 blockquote {
@@ -143,8 +160,10 @@ pre {
 }
 
 /*
- * Addresses quote property not supported in S4
+ * 2. Addresses quote property not supported in S4
  */
+
+/* 2 */
 
 q:before,
 q:after {
@@ -178,24 +197,17 @@ sub {
 }
 
 
+
 /* =============================================================================
-   Lists
+   Embedded content
    ========================================================================== */
 
-ul,
-ol {
-    margin: 1em 0;
-    padding: 0 0 0 40px;
-}
+/*
+ * Corrects overflow displayed oddly in IE9
+ */
 
-dd {
-    margin: 0 0 0 40px;
-}
-
-nav ul,
-nav ol {
-    list-style: none;
-    list-style-image: none;
+svg:not(:root) {
+    overflow: hidden;
 }
 
 
@@ -204,25 +216,35 @@ nav ol {
    ========================================================================== */
 
 /*
- * Addresses margin not present in S5, O11
+ * Addresses margin not present in IE6/7/8/9, S5, O11
  */
 
 figure {
     margin: 0;
 }
 
+
 /*
- * Define consistent margin and padding
+ * Define consistent border, margin, and padding
  */
 
 fieldset {
+    border: 1px solid #c0c0c0;
     margin: 0 2px;
     padding: 0.35em 0.625em 0.75em;
 }
 
 /*
+ * 1. Corrects color not being inherited in IE9
+ */
+
+legend {
+    border: 0; /* 1 */
+}
+
+/*
  * 1. Corrects font size not being inherited in all browsers
- * 2. Addresses margins set differently in F3/4, S5, Chrome
+ * 2. Addresses margins set differently in IE6/7, FF3+, S5, Chrome
  * 3. Improves appearance and consistency in all browsers
  */
 
@@ -236,19 +258,50 @@ textarea {
 }
 
 /*
- * Corrects inability to style clickable 'input' types in iOS
+ * Addresses FF3/4 setting line-height on 'input' using !important in the UA stylesheet
  */
 
 button,
-html input[type="button"], 
-input[type="reset"], 
+input {
+    line-height: normal; /* 1 */
+}
+
+/*
+ * 1. Improves usability and consistency of cursor style between image-type 'input' and others
+ * 2. Corrects inability to style clickable 'input' types in iOS
+ */
+
+button,
+input[type="button"],
+input[type="reset"],
 input[type="submit"] {
-    -webkit-appearance: button;
+    cursor: pointer; /* 1 */
+    -webkit-appearance: button; /* 2 */
+}
+
+/*
+ * Re-set default cursor for disabled elements
+ */
+
+button[disabled],
+input[disabled] {
+    cursor: default;
+}
+
+/*
+ * 1. Addresses box sizing set to content-box in IE8/9
+ * 2. Removes excess padding in IE8/9
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
 }
 
 /*
  * 1. Addresses appearance set to searchfield in S5, Chrome
- * 2. Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof)
+ * 2. Addresses box-sizing set to border-box in S5, Chrome (include -moz to future-proof)
  */
 
 input[type="search"] {
@@ -259,19 +312,33 @@ input[type="search"] {
 }
 
 /*
- * Corrects inner padding displayed oddly in S5, Chrome on OSX
+ * Removes inner padding and search cancel button in S5, Chrome on OS X
  */
 
-input[type="search"]::-webkit-search-decoration {
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
 }
 
 /*
- * Improves readability and alignment in all browsers
+ * Removes inner padding and border in FF3+
+ * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/*
+ * 1. Removes default vertical scrollbar in IE9 (needed on IE9 mobile?)
+ * 2. Improves readability and alignment in all browsers
  */
 
 textarea {
-    vertical-align: top;
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
 }
 
 
@@ -279,7 +346,7 @@ textarea {
    Tables
    ========================================================================== */
 
-/* 
+/*
  * Remove most spacing between table cells
  */
 
